@@ -1,0 +1,24 @@
+version: 0.2
+            
+phases:
+  install:
+    commands:
+      - yum -y groupinstall development
+      - yum -y install zlib-devel
+      - wget https://www.python.org/ftp/python/3.6.0/Python-3.6.0.tar.xz
+      - tar xJf Python-3.6.0.tar.xz
+      - cd Python-3.6.0
+      - ./configure
+      - make
+      - make install 
+  pre_build:
+    commands:
+      - python3 -V
+  build:
+    commands:
+      - echo "Building ..."
+artifacts:
+  files:
+    - .
+  discard-paths: yes
+  base-directory: .
